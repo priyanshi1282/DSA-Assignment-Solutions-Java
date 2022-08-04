@@ -1,0 +1,30 @@
+https://leetcode.com/problems/maximum-population-year/
+
+solutions:
+
+
+class Solution {
+    public int maximumPopulation(int[][] logs) {
+//         total number of years
+        int n= 2050-1950 +1;
+        int arr[]= new int[n];
+        
+        
+        for(int i=0;i<logs.length;i++){
+            int s=logs[i][0]-1950;
+            int e=logs[i][1]-1950;
+            for(int k=s;k<e;k++)
+                arr[k]++;
+        }
+        int year=0;
+        int max= arr[0];
+        for(int i=1;i<n;i++){
+            if(arr[i]>max){
+                max=arr[i];
+                year=i;
+            }
+        }
+        return year+1950;
+        
+    }
+}

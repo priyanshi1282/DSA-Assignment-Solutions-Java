@@ -1,0 +1,17 @@
+https://leetcode.com/problems/maximum-subarray/
+
+solution:
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n=nums.length;
+        int maxEnd= nums[0];
+        int ans=nums[0];
+        for(int i=1;i<n;i++){
+           int temp= maxEnd + nums[i];
+           maxEnd= temp>nums[i]?temp:nums[i];
+           ans= maxEnd>ans?maxEnd:ans;
+        }
+        return ans;
+    }
+}

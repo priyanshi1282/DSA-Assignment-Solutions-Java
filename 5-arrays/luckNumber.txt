@@ -1,0 +1,36 @@
+https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+
+solution:
+
+
+class Solution {
+    public List<Integer> luckyNumbers (int[][] arr) {
+        List<Integer> ans= new ArrayList<>();
+        int r= arr.length;
+        int c=arr[0].length;
+        
+        for(int i=0;i<r;i++){
+            int maxInd=0;
+            int min=arr[i][0];
+            
+            for(int j=1; j<c; j++)
+            {
+                if(min>arr[i][j]){
+                    min=arr[i][j];
+                     maxInd=j;
+                }
+                    
+            }
+            int max=arr[0][maxInd];
+            
+            for(int j=1;j<r;j++){
+                if(max<arr[j][maxInd])
+                max= arr[j][maxInd];
+            }
+            if(max==min)
+                ans.add(min);
+        }
+        
+        return ans;
+    }
+}
