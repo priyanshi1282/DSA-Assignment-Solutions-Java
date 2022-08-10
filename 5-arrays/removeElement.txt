@@ -1,0 +1,36 @@
+https://leetcode.com/problems/remove-element/
+
+solution:
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int n= nums.length;
+        int i=0,j=n-1;
+        for(;i<=j;i++)
+            if(nums[i]==val){
+//                 if val is repeating at the end
+                while(j>=0 && nums[j]==val){
+                    j--;
+                }
+                
+//                 when all elements are val
+                if(j==-1)
+                    return 0;
+                
+//                 when val is already at last place
+                if(i>j)
+                    return j+1;
+                
+                //                 swapping to the end
+
+                 int temp=nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                j--;
+               
+            }
+        
+//         length of updated array
+        return i;
+    }
+}
