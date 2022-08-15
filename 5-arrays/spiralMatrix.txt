@@ -1,0 +1,56 @@
+https://leetcode.com/problems/spiral-matrix/
+
+solutions : 
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> ans= new ArrayList<>();
+        int row= matrix.length;
+        int col= matrix[0].length;
+        
+//         don't use direct for loops without direction, it will run all loops at a time bedore checking conditions in while loop
+        
+//         taking direct d to run one for loop at a time and check while condition again before running another for loop 
+        
+        int l=0, r=col-1, t=0, b= row-1, d=0;
+        
+        while(l<=r && t<=b){
+//             left to right traverse (row)
+            if(d==0){
+                 for(int i=l;i<=r;i++)
+                ans.add(matrix[t][i]);
+            ++t;
+            d=1;
+            }
+           
+//             top to bottom traverse (column)
+            else if(d==1){
+               for(int i=t;i<=b;i++)
+                ans.add(matrix[i][r]);
+            --r;
+                d=2;
+            }
+            
+            
+//             rigth to left traverse (row)
+            else if(d==2){
+                 for(int i=r;i>=l;i--)
+                ans.add(matrix[b][i]);
+            --b;
+                d=3;
+            }
+           
+            
+//             bottom to top traverse (column)
+            else if(d==3){
+                  for(int i=b;i>=t;i--)
+                ans.add(matrix[i][l]);
+            ++l;
+                d=0;
+            }
+          
+            
+        }
+        
+        return ans;
+    }
+}
