@@ -1,0 +1,33 @@
+https://leetcode.com/problems/rotate-array/
+
+solution :
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n= nums.length;
+        k=k%n;
+        
+//         brute force approch 
+        // while(k>0){
+        //     //         one right shift
+        // int last = nums[n-1];
+        // for(int i=n-2;i>=0;i--)
+        //     nums[i+1]=nums[i];
+        // nums[0]=last;
+        //     --k;
+        // }
+        
+        
+        reverse(nums,0,n-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,n-1);
+    }
+    
+    void reverse(int[] arr, int i,int n){
+        for(;i<n;i++, n--){
+            int temp= arr[i];
+            arr[i]=arr[n];
+            arr[n]=temp;
+        }
+    }
+}
