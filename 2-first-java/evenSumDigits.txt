@@ -1,0 +1,24 @@
+https://leetcode.com/problems/count-integers-with-even-digit-sum/
+
+solution : 
+
+class Solution {
+    public int countEven(int num) {
+        int count=0;
+        for(int i=1;i<=num;i++)
+        {
+            if(isEven(i))
+                count++;
+        }
+        return count;
+    }
+    boolean isEven(int n){
+        int count=0;
+        while(n!=0)
+        {
+            count+=n%10;
+            n/=10;
+        }
+        return count%2==0;
+    }
+}
