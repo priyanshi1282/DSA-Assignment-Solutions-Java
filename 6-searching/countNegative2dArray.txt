@@ -1,0 +1,40 @@
+https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+
+solution :
+
+class Solution {
+    public int countNegatives(int[][] grid) {
+        int n= grid.length;
+        int m= grid[0].length;
+        
+        int count=0;
+        for(int i=0;i<n;i++){
+            int index= search(grid[i]);
+            if(index!=-1)
+                count+= m-index;
+        }
+        
+        return count;
+    }
+    
+    
+    int search(int[] arr){
+//         this function will return index of first negative integer in array
+        int n= arr.length;
+        int s=0, e=n-1;
+        if(arr[0]<0)
+            return 0;
+        while(s<=e){
+            int mid= s+(e-s)/2;
+            if(mid>0 && arr[mid]<0 && arr[mid-1]>=0)
+                return mid;
+            else if(arr[mid]>=0)
+                s=mid+1;
+            else
+                e=mid-1;
+        }
+        
+        return -1;
+    }
+    
+}
