@@ -1,0 +1,60 @@
+https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+solution : 
+
+class Solution {
+    public boolean search(int[] nums, int target) {
+        int max= pivot(nums);
+        if(max==-1)
+            return binary(nums,target,0,nums.length-1);
+        if(nums[max]==target)
+            return true;
+        if(target>=nums[0])
+            return binary(nums,target,0,max-1);
+        else 
+            return binary(nums,target,max+1,nums.length-1);
+    }
+    
+    
+    boolean binary(int[] arr, int target, int s, int e){
+        while(s<=e){
+            int m= s+(e-s)/2;
+            if(arr[m]==target)
+                return true;
+            else if(arr[m]>target)
+                e=m-1;
+            else
+                s=m+1;
+        }
+        return false;
+    }
+    
+    int pivot(int[] arr){
+        int start=0,end=arr.length-1;
+        while(start<=end){
+            int mid= start + (end-start)/2;
+            if(mid<end && arr[mid]>arr[mid+1])
+                return mid;
+            if(mid>start && arr[mid]<arr[mid-1])
+                return mid-1;
+            if(arr[mid]==arr[start] && arr[mid]==arr[end]){
+                if(start<end && arr[start]>arr[start+1]) 
+                    return start;
+                start++;
+                if(end>start && arr[end]<arr[end-1])
+                    return end-1;
+                end--;
+            }
+            else if(arr[start]<arr[mid] || (arr[mid]==arr[start] && arr[mid]>arr[end]))
+                start=mid+1;
+            else
+                end=mid-1;  
+        }
+        
+        return -1;
+    }
+    
+    
+    
+    
+}
