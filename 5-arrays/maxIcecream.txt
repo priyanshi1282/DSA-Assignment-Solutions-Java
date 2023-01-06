@@ -1,0 +1,37 @@
+link - https://leetcode.com/problems/maximum-ice-cream-bars/description/ 
+
+Solution -
+
+class Solution {
+    public int maxIceCream(int[] costs, int coin) {
+       long coins =coin;
+        // sorting the array.
+        Arrays.sort(costs);
+
+        // when icecream's minimum' price is more than coins we have.
+        if(costs[0]>coins)
+        return 0;
+
+        // when icecream's min. price is same as number of coins we have.
+        else if(costs[0]==coins)
+        return 1;
+
+        // taking sum of all icecream price.
+        long sum=0;
+        for(int i=0;i<costs.length;i++)
+        sum+=costs[i];
+
+        if(sum<= (long)coins)
+        return costs.length;
+        
+        for(int i=costs.length-1; i>0 ;i--)
+        {
+            if(sum-costs[i]  <= coins)
+            return i;
+            else
+            sum=sum-costs[i];
+        }
+
+        return 0;
+    }
+}
