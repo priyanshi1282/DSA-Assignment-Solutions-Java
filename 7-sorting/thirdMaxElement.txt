@@ -1,0 +1,36 @@
+link - https://leetcode.com/problems/third-maximum-number/description/
+
+solution - 
+
+class Solution {
+    public int thirdMax(int[] nums) {
+    
+        int n= nums.length;
+       SortedSet<Integer> arr = new TreeSet<Integer>(Collections.reverseOrder());
+        for(int x:nums)
+            arr.add(x);
+        try{
+            if(arr.size()<3)
+            return arr.first();
+        
+         }
+        catch(Exception e){
+            
+        }
+        
+        if(arr.size()==3)
+            return arr.last();
+         Iterator value = arr.iterator();
+        int count=0;
+        int ans=0;
+        while(count<3){
+           ans=(Integer)value.next();
+            count++;
+        }
+        return ans;
+
+
+
+        
+    }
+}
