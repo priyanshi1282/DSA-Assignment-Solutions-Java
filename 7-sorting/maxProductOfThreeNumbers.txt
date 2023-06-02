@@ -1,0 +1,58 @@
+link - https://leetcode.com/problems/maximum-product-of-three-numbers/description/
+
+solution - 
+
+class Solution {
+    public int maximumProduct(int[] nums) {
+        // suppose there is no duplicate values in array
+        int n= nums.length;
+
+        // apply insertion sort, time complexity - O(N^2)
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1; j>0; j--){
+                if(nums[j]<nums[j-1]){
+                    // swap
+                    int temp= nums[j];
+                    nums[j]= nums[j-1];
+                    nums[j-1]= temp;
+                }
+                else
+                break;
+            }
+        }
+
+        // arrays contains some -ve values as well, and (-ve)*(-ve) = (+ve)
+        // we will take a pivot point which will divide array into -ve and +ve part.
+        // floor of the number will be used for this.
+        int pivot = indexoffloor(nums);
+
+        // we have to skip value 0 in -ve side of array
+        if(pivot>0 && nums[pivot]==0)
+        pivot--;
+
+
+        int ans1=0, ans2=0;
+        // it means we have -ve numbers 2 or more so we can multiply them.
+        if(pivot >=1){
+         ans1= nums[0]*nums[1]*nums[n-1];
+        }
+
+        ans2 = nums[n-1]*nums[n-2]*nums[n-3];
+        int ans=Math.max(ans1,ans2);
+        return ans;
+    }
+    private static int indexoffloor(int[] arr){
+        int s=0;
+        int e= arr.length -1;
+        while(s<=e){
+            int m= s + (e-s)/2;
+            if(arr[m]>0)
+            e=m-1;
+            else if(arr[m]<0)
+            s=m+1;
+            else
+            return m;
+        }
+        return e;
+    }
+}
