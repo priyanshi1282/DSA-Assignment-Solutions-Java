@@ -1,0 +1,34 @@
+link - https://leetcode.com/problems/sort-array-by-parity-ii/description/
+
+solution - 
+
+class Solution {
+    public int[] sortArrayByParityII(int[] nums) {
+        int n=nums.length;
+        int i=0;
+        int j=n-1;
+        while(i<n && j>=0){
+            while(j>=0 && !isEven(nums[j])){
+                j-=2;
+            }
+            while(i<n && isEven(nums[i])){
+                i+=2;
+            }
+            if(i<n && j>=0){
+                int temp= nums[i];
+                nums[i]=nums[j];
+                nums[j]= temp;
+            }
+        }
+        return nums;
+    }
+
+    static boolean isEven(int n){
+        // even number 
+        if(n%2==0)
+        return true;
+
+        // odd number
+        return false;
+    }
+}
