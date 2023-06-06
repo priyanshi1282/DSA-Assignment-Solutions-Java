@@ -1,0 +1,16 @@
+link - https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+
+solution -
+
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] arr) {
+        int n= arr.length;
+        int[] count= new int[n];
+        for(int i=0;i<n;i++){
+            for(int k=0;k<n;k++)
+                if(arr[i]>arr[k])
+                    count[i]++;
+        }
+        return count;
+    }
+}
