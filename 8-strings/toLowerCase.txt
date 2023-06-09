@@ -1,0 +1,17 @@
+link - https://leetcode.com/problems/to-lower-case/description/
+
+solution -
+
+class Solution {
+    public String toLowerCase(String s) {
+
+        int n= s.length();
+        for(int i=0;i<n;i++)
+        {   char str=s.charAt(i);
+            if(str >=65 && str <=90)
+            s = s.substring(0, i) + (char)(str+32) + s.substring(i + 1);
+        }
+
+        return s;
+    }
+}
