@@ -1,0 +1,29 @@
+link - https://leetcode.com/problems/find-right-interval/description/
+
+solution -
+
+class Solution {
+    public int[] findRightInterval(int[][] intervals) {
+        int r= intervals.length;
+        int[] ans= new int[r];
+
+        for(int i=0;i<r;i++)
+        {
+            int index=-1;
+            int min =Integer.MAX_VALUE;
+            for(int j=0;j<r;j++)
+            {
+                if(intervals[i][1]<=intervals[j][0])
+                if(intervals[j][0]<min)
+                {
+                    min= intervals[j][0];
+                    index=j;
+                }
+            }
+            ans[i]=index;
+        }
+
+        return ans;
+
+    }
+}
