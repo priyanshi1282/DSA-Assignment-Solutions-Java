@@ -1,0 +1,27 @@
+link - https://leetcode.com/problems/shuffle-string/description/
+
+solution -
+
+class Solution {
+    public String restoreString(String s, int[] indices) {
+        String ans="";
+        HashMap<Integer, String> map =  new HashMap<>();
+
+        for(int i=0;i<s.length();i++)
+        {
+            map.put(indices[i], s.substring(i,i+1));
+            // map.put(indices[i],String.valueof(s.charAt(i)));
+        }
+
+        ArrayList<Integer> keys = new ArrayList(map.keySet());
+        Collections.sort(keys);
+
+        for(int i=0;i<s.length();i++)
+        {
+            ans= ans + map.get(keys.get(i));
+            // ans=ans.replce(ans,);
+        }
+
+        return ans;
+    }
+}
