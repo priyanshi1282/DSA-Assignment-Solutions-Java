@@ -1,0 +1,31 @@
+link - https://leetcode.com/problems/summary-ranges/description/
+
+solution -
+
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        
+        int n=nums.length;
+        int a,b;
+        String val;
+        List<String> str= new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            a=i;b=i;
+            int j=i;
+            while(j<n-1 && nums[j]==nums[j+1]-1){
+                b=j+1;
+                j++;
+            }
+            if(a!=b)
+            val= nums[a]+"->"+nums[b];
+            else
+            val=nums[a]+"";
+            
+            str.add(val);
+            i=b;
+        }
+
+    return str;
+    }
+}
