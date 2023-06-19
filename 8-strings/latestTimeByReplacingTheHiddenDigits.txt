@@ -1,0 +1,56 @@
+link - https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/description/
+
+solution - 
+
+class Solution {
+    public String maximumTime(String time) {
+        // hr.first =0,1 ==> hr.second=9
+        // hr.first=2 ==> hr.second=3
+        // hr.second<=3 ==> hr.first== 2
+        // hr.second>3 ==> hr.first=1
+
+        // min.first = any digit ==> min.second=9
+        // min.second= any digit ==> min.second=5
+
+        char hrFirst=time.charAt(0);
+        char hrSecond=time.charAt(1);
+        char minFirst=time.charAt(3);
+        char minSecond=time.charAt(4);
+
+         if(hrFirst=='?' && hrSecond=='?')
+         {
+             hrFirst='2';
+             hrSecond='3';
+         }
+
+          if(minFirst=='?' && minSecond=='?')
+         {
+             minFirst='5';
+             minSecond='9';
+         }
+         
+        if(hrSecond=='?'){
+            if(hrFirst == '2')
+            hrSecond='3';
+            else
+            hrSecond='9';
+        }
+       
+        if(hrFirst=='?'){
+        if(hrSecond<='3')
+        hrFirst='2';
+        else
+        hrFirst='1';
+        }
+        
+        if(minFirst=='?')
+          minFirst='5';
+           
+        
+        if(minSecond=='?')
+         minSecond='9';
+
+        
+        return hrFirst+"" + hrSecond + ":" + minFirst+"" + minSecond+"";
+    }
+}
