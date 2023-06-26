@@ -1,0 +1,27 @@
+link - https://leetcode.com/problems/sorting-the-sentence/description/
+
+solution -
+
+import java.util.*;
+class Solution {
+    public String sortSentence(String s) {
+        String[] str= s.split(" ");
+       
+         HashMap<Integer, String> map= new HashMap<>();
+        for(int i=0;i<str.length;i++)
+        {
+            int index= (str[i].charAt(str[i].length()-1) -1)- '0';
+            map.put(index,str[i].substring(0, str[i].length() -1));
+        }
+
+        List<Integer> key = new ArrayList<>(map.keySet());
+        Collections.sort(key);
+
+        Collection<String> values = map.values();
+        String[] targetArray = values.toArray(new String[0]);
+        
+        String ans= String.join(" ", targetArray);
+        return ans;
+
+    }
+}
