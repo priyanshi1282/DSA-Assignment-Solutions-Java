@@ -1,0 +1,23 @@
+link - https://leetcode.com/problems/pascals-triangle/
+
+solution -
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> list= new ArrayList<List<Integer>>();
+        for(int i=0;i<numRows;i++)
+            list.add(new ArrayList<Integer>());
+        
+        for(int i=1;i<=numRows;i++)
+        {
+            int count=1;
+            for(int j=1;j<=i;j++)
+            {
+                list.get(i-1).add(count);
+                count= count*(i-j)/j;
+            }
+        }
+        
+        return list;
+    }
+}
