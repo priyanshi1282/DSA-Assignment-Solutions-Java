@@ -1,0 +1,23 @@
+link - https://leetcode.com/problems/put-marbles-in-bags/
+
+solution -
+
+class Solution {
+    public long putMarbles(int[] weights, int k) {
+        int n= weights.length;
+        int[] arr= new int[n-1];
+        for(int i=1;i<n;i++)
+        {
+            arr[i-1]= weights[i]+weights[i-1];
+        }
+        long max=0;
+        long min=0;
+        Arrays.sort(arr);
+        for(int i=0;i<k-1;i++)
+        {
+            min+=arr[i];
+            max+= arr[n-2-i];
+        }
+        return max-min;
+    }
+}
