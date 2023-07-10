@@ -1,0 +1,34 @@
+link - https://leetcode.com/problems/determine-if-string-halves-are-alike/
+
+solution -
+
+class Solution {
+    public boolean halvesAreAlike(String s) {
+        char[] vowels={'a','e','i','o','u','A','E','I','O','U'};
+        int n= s.length();
+        String a= s.substring(0,n/2);
+        String b=s.substring(n/2);
+        
+        int count1=0;
+        int count2=0;
+        
+        for(int i=0;i<n/2;i++)
+        {
+            if(search(vowels, a.charAt(i)))
+                count1++;
+            if(search(vowels, b.charAt(i)))
+                count2++;
+        }
+        
+        return count1==count2;
+        
+    }
+    boolean search(char[] arr, char ch)
+    {
+        for(char x: arr)
+            if(x==ch)
+                return true;
+        
+        return false;
+    }
+}
