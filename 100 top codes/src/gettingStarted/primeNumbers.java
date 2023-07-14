@@ -18,7 +18,7 @@ public class primeNumbers {
             checkPrime3(num);
             checkPrime4(num);
             checkPrime5(num);
-            checkPrime6(num, 2);
+            checkPrime6(num, 3);
 
         }
 
@@ -27,7 +27,7 @@ public class primeNumbers {
 
 //    basic iterative method
     private static void checkPrime(int num){
-        int factors=0;
+        int factors=1;
         for(int i=2;i<=num;i++)
             if (num%i==0)
                 factors++;
@@ -79,7 +79,18 @@ public class primeNumbers {
 
 //    by skipping even terms, if 2 is already checked, why to check for 4,6,8,10,12,14,...... and so.
     private static void checkPrime5(int num){
-        for (int i=2; i*i<= num; i=i+2)
+        if(num==2){
+            System.out.println("prime");
+            return;
+        }
+        if (num%2==0)
+        {
+            System.out.println("not prime");
+            return;
+        }
+
+
+        for (int i=3; i*i<= num; i=i+2)
             if (num%i==0)
             {
                 System.out.println("not prime");
@@ -91,15 +102,15 @@ public class primeNumbers {
 
 //    using recursion
     private static void checkPrime6(int num, int i){
-        if (i>=num)
+        if (i>=num || num==2)
         {
             System.out.println("prime");
             return;
         }
 
-        if (num%i==0)
+        if (num%i==0 || num%2==0)
         {
-            System.out.println("not ptime");
+            System.out.println("not prime");
             return;
         }
         checkPrime6(num,i+2);
